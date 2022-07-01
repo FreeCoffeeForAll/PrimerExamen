@@ -46,23 +46,23 @@ public class ConciertosController {
     }
     
     @PostMapping("/save")
-    public String guardarVerduras (@ModelAttribute Conciertos Conciertos){
+    public String guardarConciertos (@ModelAttribute Conciertos Conciertos){
         conciertosService.saveConciertos(Conciertos); //con esto lo guardo en mi base de datos
         return "redirect:/Conciertos";
     }
     
      @GetMapping("/editConciertos/{id}")
-    public String editarVerduras (@PathVariable("id") Long idVerduras, Model model){
-        Conciertos Conciertos = conciertosService.getConciertosById(idVerduras);
+    public String editarConciertos (@PathVariable("id") Long idConciertos, Model model){
+        Conciertos Conciertos = conciertosService.getConciertosById(idConciertos);
         List<ITickets> listaITickets = iticketsService.ListITickets();
-        model.addAttribute("verduras",Conciertos);
-        model.addAttribute("verdulerias",listaITickets);
+        model.addAttribute("Conciertos",Conciertos);
+        model.addAttribute("ITickets",listaITickets);
         return "crear";
     }
     
     @GetMapping("/delete/{id}")
-    public String eliminarVerduras (@PathVariable("id") Long idVerduras){
-        conciertosService.delete(idVerduras);
-        return "redirect:/verduras";
+    public String eliminarConciertos (@PathVariable("id") Long idConciertos){
+        conciertosService.delete(idConciertos);
+        return "redirect:/Conciertos";
     }
 }
